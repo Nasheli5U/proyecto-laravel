@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\PersonaController;
+use App\Http\Controllers\PaginawebController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -102,3 +104,10 @@ Route::get('/productos', function () {
 
 
 Route::get('/lista-personas/{id_persona}', [PersonaController::class, 'mostrarPersona']) ->name('mostar-personas');
+
+
+//------------pagina web------eliminar//
+
+Route::get('/paginaweb', [PaginawebController::class, 'verPaginaWeb'])->name('Paginawebbbb');
+
+
