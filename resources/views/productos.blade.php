@@ -8,8 +8,8 @@
 </head>
 <body>
 
-<div class="">
-  <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+  <div class="flex flex-col">
+    <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
     <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
       <div class="overflow-hidden">
       <table class="min-w-full text-center text-sm font-light">
@@ -24,20 +24,33 @@
               <th scope="col" class="px-6 py-4">Precio</th>
               <th scope="col" class="px-6 py-4">Stock</th>
               <th scope="col" class="px-6 py-4">Fecha de Registro</th>
+              <th scope="col" class="px-6 py-4">Opciones</th>
             </tr>
           </thead>
           <tbody>
             @foreach ($productos as $producto)
             <tr>
-                <td>{{ $producto['productoID'] }}</td>
+                <td>{{ $producto['productoID']}}</td>
                 <td>{{ $producto['nombre'] }}</td>
-                <td>{{ $producto['categoria'] }}</td>
-                <td>{{ $producto['descripcion'] }}</td>
-                <td> <img style= "height: center" src="{{ $producto ['foto']}}" alt=""></td>
-                <td>{{ $producto['precio'] }}</td>
-                <td>{{ $producto['stock'] }}</td>
-                <td>{{ $producto['fecha_registro'] }}</td>
-                <td></td>
+                <td>{{ $producto['categoria']}}</td>
+                <td>{{ $producto['descripcion']}}</td>
+                <td> <img style= "height: 50px" src="{{ $producto ['foto']}}" alt=""></td>
+                <td>{{ $producto['precio']}}</td>
+                <td>{{ $producto['stock']}}</td>
+                <td>{{ $producto['fecha_registro']}}</td>
+                <td>
+                <div class="inline-flex">
+                    <a href = "{{route ('productos', $producto ['productoID'])}}" class="bg-transparent hover:bg-fuchsia-500 text-purple-700 font-semibold hover:text-white py-2 px-4 border border-violet-500 hover:border-transparent rounded">
+                    Detalles
+                    </a>
+                    <button class="bg-transparent hover:bg-fuchsia-500 text-purple-700 font-semibold hover:text-white py-2 px-4 border border-violet-500 hover:border-transparent rounded">
+                    Editar
+                    </button>
+                    <button class="bg-transparent hover:bg-fuchsia-500 text-purple-700 font-semibold hover:text-white py-2 px-4 border border-violet-500 hover:border-transparent rounded">
+                    Eliminar
+                    </button>
+                  </div>
+                  </td>
             </tr>
         @endforeach
     </tbody>
