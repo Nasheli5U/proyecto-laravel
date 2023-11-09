@@ -32,8 +32,12 @@
 	<link rel="stylesheet" type="text/css" href="{{ asset('web/vendor/perfect-scrollbar/perfect-scrollbar.css') }}">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="{{ asset('web/css/util.css') }}">
+	
 	<link rel="stylesheet" type="text/css" href="{{ asset('web/css/main.css') }}">
-<!--===============================================================================================-->
+
+	@vite('resources/css/app.css')
+
+	<!--===============================================================================================-->
 </head>
 <body class="animsition">
 	
@@ -51,26 +55,86 @@
 		<div class="container">
 			<div class="flex-w flex-tr">
 				<div class="size-210 bor10 p-lr-70 p-t-55 p-b-70 p-lr-15-lg w-full-md">
-					<form>
-						<h4 class="mtext-105 cl2 txt-center p-b-30">
-							Send Us A Message
-						</h4>
+					<div>
+						<!-- component -->
+						<form class="bg-white" action = "{{route('guardar.producto')}}" method="POST" enctype="multipart/form-data">
+							@csrf
+							<h1 class="text-gray-800 font-bold text-2xl mb-1">Hello Again!</h1>
+							<div class="flex items-center border-2 py-2 px-3 rounded-2xl mb-4">
+								<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" viewBox="0 0 20 20"
+									fill="currentColor">
+									<path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+										clip-rule="evenodd" />
+								</svg>
+								<input class="pl-2 outline-none border-none" type="text" name="nombre" id="" placeholder="Nombre" />
+							</div>
 
-						<div class="bor8 m-b-20 how-pos4-parent">
-							<input class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="text" name="email" placeholder="Your Email Address">
-							<img class="how-pos4 pointer-none" src='{{ asset('web/images/icons/icon-email.png') }}' alt="ICON">
-						</div>
+							<div class="flex items-center border-2 py-2 px-3 rounded-2xl mb-4">
+							
+								<select id="countries" name="categoria" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+								<option selected>Categoria</option>
+								<option value="US">carnes</option>
+								<option value="CA">frutas</option>
+								<option value="FR">verduras</option>
+								<option value="DE">legumbres</option>
+								</select>
+	
+							</div>
 
-						<div class="bor8 m-b-30">
-							<textarea class="stext-111 cl2 plh3 size-120 p-lr-28 p-tb-25" name="msg" placeholder="How Can We Help?"></textarea>
-						</div>
+							<div class="flex items-center border-2 py-2 px-3 rounded-2xl mb-4">
+								<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" viewBox="0 0 20 20"
+									fill="currentColor">
+									<path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+										clip-rule="evenodd" />
+								</svg>
+								<input class="pl-2 outline-none border-none" type="date" name="fecha_registro" id="" placeholder="Fecha de Registro" />
+							</div>
 
-						<button class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer">
-							Submit
-						</button>
-					</form>
+							<div class="flex items-center border-2 py-2 px-3 rounded-2xl mb-4">
+								<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" viewBox="0 0 20 20"
+									fill="currentColor">
+									<path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+										clip-rule="evenodd" />
+								</svg>
+								<input class="pl-2 outline-none border-none" type="text" name="precio" id="" placeholder="Precio" />
+							</div>
+
+							<div class='flex items-center justify-center w-full'>
+								<label class='flex flex-col border-4 border-dashed w-full h-32 hover:bg-gray-100 hover:border-purple-300 group'>
+									<div class='flex flex-col items-center justify-center pt-7'>
+									<svg class="w-10 h-10 text-purple-400 group-hover:text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+									<p class='lowercase text-sm text-gray-400 group-hover:text-purple-600 pt-1 tracking-wider'>Select a photo</p>
+									</div>
+							
+								<input type='file' class="hidden" name="foto" />
+								</label>
+							</div>
+
+							<div class="flex items-center border-2 py-2 px-3 rounded-2xl mb-4">
+								<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" viewBox="0 0 20 20"
+									fill="currentColor">
+									<path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+										clip-rule="evenodd" />
+								</svg>
+								<input class="pl-2 outline-none border-none" type="text" name="descripcion" id="" placeholder="Descripcion" />
+							</div>
+
+							<div class="flex items-center border-2 py-2 px-3 rounded-2xl mb-4">
+								<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" viewBox="0 0 20 20"
+									fill="currentColor">
+									<path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+										clip-rule="evenodd" />
+								</svg>
+								<input class="pl-2 outline-none border-none" type="text" name="stock" id="" placeholder="Stock" />
+							</div>
+
+							<button class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">
+								Guardar
+							</button>	
+						</form>
+						
+					</div>
 				</div>
-
 				<div class="size-210 bor10 flex-w flex-col-m p-lr-93 p-tb-30 p-lr-15-lg w-full-md">
 					<div class="flex-w w-full p-b-42">
 						<span class="fs-18 cl5 txt-center size-211">

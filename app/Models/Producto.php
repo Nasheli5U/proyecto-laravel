@@ -10,6 +10,8 @@ class Producto extends Model
     protected $table = 'productos' ;
      
     protected $primaryKey = 'productoID';
+    public $timestamps = false;
+
     protected $fillable = [
         'nombre',
         'categoria',

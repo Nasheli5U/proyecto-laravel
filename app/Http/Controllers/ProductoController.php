@@ -13,11 +13,12 @@ class ProductoController extends Controller
 
     public function listarProducto(){
 
-        alert()->success('Exitoso')->toToast();
-        $productos = Producto::all();
+        $mensaje = session('mensaje');       
+        if ($mensaje){
+            alert()->success('Exitoso')->toToast();
+        }
 
-    
-    
+        $productos = Producto::all();
         return view('productos', compact('productos'));
      
     

@@ -11,9 +11,15 @@ class PersonaController extends Controller
 {
     //
     public function listarPersona(){
+        $mensaje = session('mensaje');       
+        if ($mensaje){
+            alert()->success('Exitoso')->toToast();
+        }
 
-        alert()->success('Exitoso')->toToast();
+
         $personas = Persona::all();
+
+        //alert()->success('Exitoso')->toToast();
         return view('lista-personas', compact('personas'));   
      
     

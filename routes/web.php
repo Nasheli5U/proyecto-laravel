@@ -37,7 +37,7 @@ Route::get('/productos',[ProductoController::class, 'listarProducto'])->name('pr
 Route::get('/lista-personas/{id_persona}', [PersonaController::class, 'mostrarPersona']) ->name('mostar-personas');
 
 
-Route::get('/productos/{id_producto}', [ProductoController::class, 'mostrarProducto']) ->name('productos');
+Route::get('/productos/{id_producto}', [ProductoController::class, 'mostrarProducto']) ->name('mostar-productos');
 
 
 
@@ -49,4 +49,6 @@ Route::get('/paginaweb', [PaginawebController::class, 'verPaginaWeb'])->name('Pa
 Route::get('/registro-persona',[RegistroPersonawebController::class, 'registroPersona'])->name('registro.persona');
 Route::get('/registro-producto',[RegistroProductowebController::class, 'registroProducto'])->name('registro.producto');    
 
+Route::post('/guardar-persona',[RegistroPersonawebController::class, 'guardarPersona'])->name('guardar.persona');
+Route::post('/guardar-producto',[RegistroProductowebController::class, 'guardarProducto'])->name('guardar.producto');
 
