@@ -35,7 +35,7 @@ class RegistroPersonawebController extends Controller
             ->route('lista-personas')
             ->with('mensaje', 'Persona registrada correctamente');
         }catch(Exception $ex){ 
-            dd($ex);
+            dd($ex->getMessage());
             return redirect()
             ->route('registro.persona')
             ->with('mensaje', $ex->getMessage());

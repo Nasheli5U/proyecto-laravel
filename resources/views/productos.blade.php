@@ -34,7 +34,8 @@
                 <td>{{ $producto['nombre'] }}</td>
                 <td>{{ $producto['categoria']}}</td>
                 <td>{{ $producto['descripcion']}}</td>
-                <td> <img style= "height: 50px" src="{{ $producto ['foto']}}" alt=""></td>
+                <td> <img style="height: 50px" src="{{ asset('storage/fotos/' . $producto['foto']) }}" alt="">
+                </td>
                 <td>{{ $producto['precio']}}</td>
                 <td>{{ $producto['stock']}}</td>
                 <td>{{ $producto['fecha_registro']}}</td>
