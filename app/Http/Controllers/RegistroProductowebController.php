@@ -17,7 +17,7 @@ class RegistroProductowebController extends Controller
 
     public function guardarProducto(Request $request) {
         try{
-            $fotoPath = $request->file('foto')->store('public/fotos');
+            $fotoPath = $request->file('foto')->store('uploads', 'public');
 
             $data = [
                 'nombre' => $request->get('nombre'),

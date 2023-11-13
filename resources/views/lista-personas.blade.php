@@ -15,7 +15,7 @@
       <div class="overflow-hidden">
       <table class="min-w-full text-center text-sm font-light">
           <thead
-          class="border-b bg-neutral-800 font-medium text-white dark:border-neutral-500 dark:bg-neutral-900">
+          class="text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
             <tr>
               <th scope="col" class="px-6 py-4">#</th>
               <th scope="col" class="px-6 py-4">Nombre</th>
@@ -36,18 +36,26 @@
                 <td>{{ $persona ['materno']}}</td>
                 <td>{{ $persona ['documento']}}</td>
                 <td>{{ $persona ['celular']}}</td>
-                <td> <img style= "height: 50px" src="{{ $persona ['foto']}}" alt=""></td>
+                <td> <img style= "height: 50px" alt="" src="{{ asset('storage/fotos/', $persona['foto']) }}" ></td>
                 <td>
                 <div class="inline-flex">
-                    <a href = "{{route ('mostar-personas', $persona ['personaID'])}}" class="bg-transparent hover:bg-fuchsia-500 text-purple-700 font-semibold hover:text-white py-2 px-4 border border-violet-500 hover:border-transparent rounded">
+                    <a href = "{{route ('mostar-personas', $persona ['personaID'])}}" class="text-white bg-gradient-to-r from-cyan-500 to-fuchsia-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
                     Detalles
                     </a>
-                    <button class="bg-transparent hover:bg-fuchsia-500 text-purple-700 font-semibold hover:text-white py-2 px-4 border border-violet-500 hover:border-transparent rounded">
+                    <button class="text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
                     Editar
                     </button>
-                    <button class="bg-transparent hover:bg-fuchsia-500 text-purple-700 font-semibold hover:text-white py-2 px-4 border border-violet-500 hover:border-transparent rounded">
+
+                     <form action="{{route('eliminar.personas', $persona ['personaID'])}}" method="POST">
+                      @csrf
+                      @method('DELETE')
+                      <button type="submit" class="text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
                     Eliminar
                     </button>
+                    </form>
+
+                    
+
                 </div>
                 </td>
             </tr>

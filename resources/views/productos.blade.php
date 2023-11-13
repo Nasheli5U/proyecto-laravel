@@ -7,60 +7,60 @@
     @vite('resources/css/app.css')
 </head>
 <body>
+  <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+    <thead class="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
+      <tr>
+          <th scope="col" class="px-6 py-4">#</th>
+          <th scope="col" class="px-6 py-4">Nombre</th>
+          <th scope="col" class="px-6 py-4">Categoría</th>
+          <th scope="col" class="px-6 py-4">Descripcion</th>
+          <th scope="col" class="px-6 py-4">Imagen</th>
+          <th scope="col" class="px-6 py-4">Precio</th>
+          <th scope="col" class="px-6 py-4">Stock</th>
+          <th scope="col" class="px-6 py-4">Fecha de Registro</th>
+          <th scope="col" class="px-6 py-4">Opciones</th>
+      </tr>
+    </thead>
+      <tbody>
+        @foreach ($productos as $producto)
+        <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+          <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+            {{ $producto['productoID']}}
+          </th>
+            <td class="px-6 py-4">{{ $producto['nombre'] }}</td>
+            <td class="px-6 py-4">{{ $producto['categoria']}}</td>
+            <td class="px-6 py-4">{{ $producto['descripcion']}}</td>
+            <td class="px-6 py-4"> <img style="height: 50px" src="{{ asset('storage/fotos/' . $producto['foto']) }}" alt="">
+            </td>
+            <td class="px-6 py-4">{{ $producto['precio']}}</td>
+            <td class="px-6 py-4">{{ $producto['stock']}}</td>
+            <td class="px-6 py-4">{{ $producto['fecha_registro']}}</td>
+            <td class="px-6 py-4">
+              <div class="inline-flex">
+                <a href = "{{route ('mostar-productos', $producto ['productoID'])}}" class="text-white bg-gradient-to-br from-green-400 to-blue-600 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
+                Detalles
+                </a>
+                <button type="button" class="text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
+                  Editar
+                </button>
 
-  <div class="flex flex-col">
-    <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
-    <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
-      <div class="overflow-hidden">
-      <table class="min-w-full text-center text-sm font-light">
-          <thead
-          class="border-b bg-neutral-800 font-medium text-white dark:border-neutral-500 dark:bg-neutral-900">
-            <tr>
-            <th scope="col" class="px-6 py-4">#</th>
-              <th scope="col" class="px-6 py-4">Nombre</th>
-              <th scope="col" class="px-6 py-4">Categoría</th>
-              <th scope="col" class="px-6 py-4">Descripcion</th>
-              <th scope="col" class="px-6 py-4">Imagen</th>
-              <th scope="col" class="px-6 py-4">Precio</th>
-              <th scope="col" class="px-6 py-4">Stock</th>
-              <th scope="col" class="px-6 py-4">Fecha de Registro</th>
-              <th scope="col" class="px-6 py-4">Opciones</th>
-            </tr>
-          </thead>
-          <tbody>
-            @foreach ($productos as $producto)
-            <tr>
-                <td>{{ $producto['productoID']}}</td>
-                <td>{{ $producto['nombre'] }}</td>
-                <td>{{ $producto['categoria']}}</td>
-                <td>{{ $producto['descripcion']}}</td>
-                <td> <img style="height: 50px" src="{{ asset('storage/fotos/' . $producto['foto']) }}" alt="">
-                </td>
-                <td>{{ $producto['precio']}}</td>
-                <td>{{ $producto['stock']}}</td>
-                <td>{{ $producto['fecha_registro']}}</td>
-                <td>
-                <div class="inline-flex">
-                    <a href = "{{route ('productos', $producto ['productoID'])}}" class="bg-transparent hover:bg-fuchsia-500 text-purple-700 font-semibold hover:text-white py-2 px-4 border border-violet-500 hover:border-transparent rounded">
-                    Detalles
-                    </a>
-                    <button class="bg-transparent hover:bg-fuchsia-500 text-purple-700 font-semibold hover:text-white py-2 px-4 border border-violet-500 hover:border-transparent rounded">
-                    Editar
-                    </button>
-                    <button class="bg-transparent hover:bg-fuchsia-500 text-purple-700 font-semibold hover:text-white py-2 px-4 border border-violet-500 hover:border-transparent rounded">
-                    Eliminar
-                    </button>
-                  </div>
-                  </td>
-            </tr>
+                <form action="{{route('eliminar.productos', $producto ['productoID'])}}" method="POST">
+                  @csrf
+                  @method('DELETE')
+                  <button type="submit" class="text-white bg-gradient-to-br from-pink-500 to-orange-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
+                  Eliminar
+                  </button>
+                </form>
+              </div>
+            </td>
+        </tr>
         @endforeach
-    </tbody>
-        </table>
-      </div>
-    </div>
+      </tbody>
+    </table>
   </div>
-</div>
 
-    
+@include('sweetalert::alert')
+
 </body>
 </html>

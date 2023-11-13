@@ -25,21 +25,11 @@ Route::get('/', function () {
 });
 
 Route::get('/lista-personas',[PersonaController::class, 'listarPersona'])->name('lista-personas');
-
-
-
-
 Route::get('/productos',[ProductoController::class, 'listarProducto'])->name('productos');
 
 
-
-
 Route::get('/lista-personas/{id_persona}', [PersonaController::class, 'mostrarPersona']) ->name('mostar-personas');
-
-
 Route::get('/productos/{id_producto}', [ProductoController::class, 'mostrarProducto']) ->name('mostar-productos');
-
-
 
 
 
@@ -52,3 +42,7 @@ Route::get('/registro-producto',[RegistroProductowebController::class, 'registro
 Route::post('/guardar-persona',[RegistroPersonawebController::class, 'guardarPersona'])->name('guardar.persona');
 Route::post('/guardar-producto',[RegistroProductowebController::class, 'guardarProducto'])->name('guardar.producto');
 
+
+
+Route::delete('/eliminar-personas/{id_persona}',[PersonaController::class, 'eliminarPersona'])->name('eliminar.personas');
+Route::delete('/eliminar-producto/{id_producto}',[ProductoController::class, 'eliminarProductos'])->name('eliminar.productos');
