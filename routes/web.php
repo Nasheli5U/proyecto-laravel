@@ -7,7 +7,7 @@ use App\Http\Controllers\PaginawebController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\RegistroPersonawebController;
 use App\Http\Controllers\RegistroProductowebController;
-
+use Illuminate\Support\Facades\App;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,9 +20,7 @@ use App\Http\Controllers\RegistroProductowebController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 Route::get('/lista-personas',[PersonaController::class, 'listarPersona'])->name('lista-personas');
 Route::get('/productos',[ProductoController::class, 'listarProducto'])->name('productos');
@@ -46,3 +44,11 @@ Route::post('/guardar-producto',[RegistroProductowebController::class, 'guardarP
 
 Route::delete('/eliminar-personas/{id_persona}',[PersonaController::class, 'eliminarPersona'])->name('eliminar.personas');
 Route::delete('/eliminar-producto/{id_producto}',[ProductoController::class, 'eliminarProductos'])->name('eliminar.productos');
+
+
+Route::get('/pdf', function () {
+    $pdf = App::make('dompdf.wrapper');
+    $pdf->loadHTML('<h1>Test</h1>');
+    return $pdf->stream();
+    return view('welcome');
+});

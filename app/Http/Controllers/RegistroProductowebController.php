@@ -17,14 +17,15 @@ class RegistroProductowebController extends Controller
 
     public function guardarProducto(Request $request) {
         try{
-            $fotoPath = $request->file('foto')->store('uploads', 'public');
+            $uriFoto = $request->file('foto')->store('uploads', 'public');
 
             $data = [
                 'nombre' => $request->get('nombre'),
                 'categoria' => $request->get('categoria'),
                 'fecha_registro' => $request->get('fecha_registro'), 
                 'precio' => $request->get('precio'), 
-                'foto' => $fotoPath,                'descripcion' => $request->get('descripcion'), 
+                'foto' => $uriFoto,                
+                'descripcion' => $request->get('descripcion'), 
                 'stock' => $request->get('stock') 
             ];
     
