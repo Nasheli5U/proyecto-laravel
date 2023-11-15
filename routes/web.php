@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\PersonaController;
 use App\Http\Controllers\PaginawebController;
+use App\Http\Controllers\PdfController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\RegistroPersonawebController;
 use App\Http\Controllers\RegistroProductowebController;
@@ -46,9 +47,10 @@ Route::delete('/eliminar-personas/{id_persona}',[PersonaController::class, 'elim
 Route::delete('/eliminar-producto/{id_producto}',[ProductoController::class, 'eliminarProductos'])->name('eliminar.productos');
 
 
-Route::get('/pdf', function () {
-    $pdf = App::make('dompdf.wrapper');
-    $pdf->loadHTML('<h1>Test</h1>');
-    return $pdf->stream();
+Route::get('/pdf-personas',[PdfController::class, 'exportarPDFPersona'])->name('pdf.personas');
+Route::get('/pdf-productos',[PdfController::class, 'exportarPDFProducto'])->name('pdf.productos');
+
+
+Route::get('/', function () {
     return view('welcome');
 });
