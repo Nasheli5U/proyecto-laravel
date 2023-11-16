@@ -39,4 +39,38 @@ class ProductoController extends Controller
         ->route('productos')
         ->with('mensaje', 'Producto eliminado correctamente');
     }
+
+    public function editarProducto(Request $request, $id_producto){
+        $producto=Producto::find($id_producto);
+
+        return view('editar-producto-web', compact('producto'));
+        //dd($id_producto);
+    }
+
+    public function actualizarproducto(Request $request, $id_producto){
+        //dd($request);
+        if($request->file('foto')){
+            $uriFoto =  $request->file('foto')->store('uploads', 'public');
+
+        } else {
+        $uriFoto =  $request->get('fotoeditar');
+        }
+        $producto = producto::Where('productoID', $id_producto)->update(
+            [
+                'nombre' => $request->get('nombre'),
+                'categoria' => $request->get('categoria'),
+                'fecha_registro' => $request->get('fecha_registro'), 
+                'precio' => $request->get('precio'), 
+                'foto' => $uriFoto,                
+                'descripcion' => $request->get('descripcion'), 
+                'stock' => $request->get('stock') 
+            ]
+            
+            );
+            return redirect()
+            ->route('productos')
+            ->with('mensaje', 'producto actualizada correctamente');
+    }
+
+
 }

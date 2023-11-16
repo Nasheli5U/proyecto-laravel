@@ -27,11 +27,6 @@ Route::get('/lista-personas',[PersonaController::class, 'listarPersona'])->name(
 Route::get('/productos',[ProductoController::class, 'listarProducto'])->name('productos');
 
 
-Route::get('/lista-personas/{id_persona}', [PersonaController::class, 'mostrarPersona']) ->name('mostar-personas');
-Route::get('/productos/{id_producto}', [ProductoController::class, 'mostrarProducto']) ->name('mostar-productos');
-
-
-
 //------------pagina web------//
 
 Route::get('/paginaweb', [PaginawebController::class, 'verPaginaWeb'])->name('Paginawebbbb');
@@ -42,13 +37,24 @@ Route::post('/guardar-persona',[RegistroPersonawebController::class, 'guardarPer
 Route::post('/guardar-producto',[RegistroProductowebController::class, 'guardarProducto'])->name('guardar.producto');
 
 
-
 Route::delete('/eliminar-personas/{id_persona}',[PersonaController::class, 'eliminarPersona'])->name('eliminar.personas');
 Route::delete('/eliminar-producto/{id_producto}',[ProductoController::class, 'eliminarProductos'])->name('eliminar.productos');
 
 
 Route::get('/pdf-personas',[PdfController::class, 'exportarPDFPersona'])->name('pdf.personas');
 Route::get('/pdf-productos',[PdfController::class, 'exportarPDFProducto'])->name('pdf.productos');
+
+Route::get('/mostrar-personas/{id_persona}', [PersonaController::class, 'mostrarPersona']) ->name('mostrar.persona');
+Route::get('/productos/{id_producto}', [ProductoController::class, 'mostrarProducto']) ->name('mostar-productos');
+
+
+Route::get('/editar-persona/{id_persona}', [PersonaController::class, 'editarPersona']) ->name('editar.persona');
+Route::put('/actualizar-persona/{id_persona}', [PersonaController::class, 'actualizarPersona']) ->name('actualizar.persona');
+
+
+Route::get('/editar-producto/{id_producto}', [ProductoController::class, 'editarProducto']) ->name('editar.producto');
+Route::put('/actualizar-producto/{id_producto}', [ProductoController::class, 'actualizarProducto']) ->name('actualizar.producto');
+
 
 
 Route::get('/', function () {

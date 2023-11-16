@@ -94,7 +94,7 @@
           <tbody>
             @foreach ($personas as $persona)
             <tr>
-                <td>{{ $persona ['personaID']}}</td>
+                <td>{{$loop->iteration}}</td>
                 <td>{{ $persona ['nombres']}}</td>
                 <td>{{ $persona ['paterno']}}</td>
                 <td>{{ $persona ['materno']}}</td>
@@ -104,12 +104,12 @@
                   src="{{ asset('storage/'.$persona['foto'])}}" ></td>
                 <td>
                 <div class="inline-flex">
-                    <a href = "{{route ('mostar-personas', $persona ['personaID'])}}" class="text-white bg-gradient-to-br from-pink-500 to-orange-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
+                    <a href = "{{route ('mostrar.persona', $persona ['personaID'])}}" class="text-white bg-gradient-to-r from-red-200 via-red-300 to-pink-200 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-red-100 dark:focus:ring-red-400 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
                     Detalles
                     </a>
-                    <button class="text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
+                    <a href = "{{route ('editar.persona', $persona ['personaID'])}}" class="text-white bg-gradient-to-br from-green-400 to-blue-600 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
                     Editar
-                    </button>
+                    </a>
 
                      <form action="{{route('eliminar.personas', $persona ['personaID'])}}" method="POST">
                       @csrf

@@ -38,4 +38,36 @@ class PersonaController extends Controller
         ->route('lista-personas')
         ->with('mensaje', 'Persona eliminada correctamente');
     }
+
+    public function editarPersona(Request $request, $id_persona){
+        $persona=Persona::find($id_persona);
+
+        return view('editar-persona', compact('persona'));
+        //dd($id_persona);
+    }
+
+    public function actualizarPersona(Request $request, $id_persona){
+        //dd($request);
+        if($request->file('foto')){
+            $uriFoto =  $request->file('foto')->store('uploads', 'public');
+
+        } else {
+        $uriFoto =  $request->get('fotoeditar');
+        }
+        $persona = Persona::Where('personaID', $id_persona)->update(
+            [
+                'nombres' => $request->get('nombres'),
+                'paterno' => $request->get('paterno'),
+                'materno' => $request->get('materno'), 
+                'bibliografia' => $request->get('bibliografia'), 
+                'foto' => $uriFoto, 
+                'documento' => $request->get('documento'), 
+                'celular' => $request->get('celular') 
+            ]
+            
+            );
+            return redirect()
+            ->route('lista-personas')
+            ->with('mensaje', 'Persona actualizada correctamente');
+    }
 }

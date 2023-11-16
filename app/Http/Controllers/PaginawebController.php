@@ -2,11 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Persona;
+use App\Models\Producto;
 use Illuminate\Http\Request;
 
 class PaginawebController extends Controller
 {
     public function verPaginaWeb (){
-        return view('web.pagina-web-principal');
+
+        $data = [
+            'personas' => Persona::all(),
+            'productos' => Producto::all(),
+        ];
+
+        return view('web.pagina-web-principal', compact('data'));
     }
 }
